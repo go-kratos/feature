@@ -2,7 +2,7 @@
 This page contains an overview of the various feature gates an administrator can specify on different components.
 
 ### Overview
-Feature gates are a set of key=value pairs that describe features. You can turn these features on or off using the --feature-gates command line flag on each component.
+Feature gates are a set of key=value pairs that describe features. You can turn these features on or off using the --feature-gates=foo=true,bar=false command line flag on each component.
 
 ### Usage
 ```go
