@@ -9,29 +9,29 @@ import (
 // Option is feature option.
 type Option func(*Feature)
 
-// WithFeautreStage with the feature stage.
-func WithFeautreStage(stage Stage) Option {
+// WithFeatureStage with the feature stage.
+func WithFeatureStage(stage Stage) Option {
 	return func(f *Feature) {
 		f.stage = stage
 	}
 }
 
-// WithFeautreDescription with the feautre description.
-func WithFeautreDescription(description string) Option {
+// WithFeatureDescription with the Feature description.
+func WithFeatureDescription(description string) Option {
 	return func(f *Feature) {
 		f.description = description
 	}
 }
 
-// WithFeautreToVersion with the feautre to version.
-func WithFeautreToVersion(version string) Option {
+// WithFeatureToVersion with the Feature to version.
+func WithFeatureToVersion(version string) Option {
 	return func(f *Feature) {
 		f.toVersion = version
 	}
 }
 
-// WithFeautreFromVersion with the feautre to version.
-func WithFeautreFromVersion(version string) Option {
+// WithFeatureFromVersion with the Feature to version.
+func WithFeatureFromVersion(version string) Option {
 	return func(f *Feature) {
 		f.toVersion = version
 	}

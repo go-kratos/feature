@@ -4,10 +4,10 @@ Feature gates are a set of key=value pairs that describe features. You can turn 
 ### Usage
 ```go
 var foo = feature.MustRegister("Foo", false,
-	feature.WithFeautreStage(feature.StageAlpha),
-	feature.WithFeautreFromVersion("0.0.1"),
-	feature.WithFeautreToVersion("1.0.0"),
-	feature.WithFeautreDescription("A foo feature"),
+	feature.WithFeatureStage(feature.StageAlpha),
+	feature.WithFeatureFromVersion("0.0.1"),
+	feature.WithFeatureToVersion("1.0.0"),
+	feature.WithFeatureDescription("A foo feature"),
 )
 if foo.Enabled() {
     // TODO Feature
