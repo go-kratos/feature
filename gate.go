@@ -5,7 +5,7 @@ import "flag"
 var globalRegistry = NewRegistry()
 
 func init() {
-	flag.CommandLine.Var(globalRegistry, "feature-gates", "A set of key=value pairs that describe feature gates for alpha/beta/stable features.")
+	flag.Var(globalRegistry, "feature-gates", "A set of key=value pairs that describe feature gates for alpha/beta/stable features.")
 }
 
 // Register register a feature gate.
@@ -18,9 +18,10 @@ func MustRegister(name string, enabled bool, opts ...Option) *Feature {
 	return globalRegistry.MustRegister(name, enabled, opts...)
 }
 
-// Set parses the feature flags: foo=true,bar=false.
-func Set(featureFlags string) error {
-	return globalRegistry.Set(featureFlags)
+// Set sets the feature arguments.
+// eg: foo=true,bar=false
+func Set(args string) error {
+	return globalRegistry.Set(args)
 }
 
 // SetEnabled set feature enabled.

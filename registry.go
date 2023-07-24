@@ -54,9 +54,7 @@ func (r *Registry) Register(name string, enabled bool, opts ...Option) (*Feature
 	if _, ok := r.features[name]; ok {
 		return nil, fmt.Errorf("feature gate %s is registered", name)
 	}
-	feature := &Feature{
-		name: name,
-	}
+	feature := &Feature{name: name}
 	feature.enabled.Store(enabled)
 	for _, o := range opts {
 		o(feature)
@@ -74,19 +72,27 @@ func (r *Registry) MustRegister(name string, enabled bool, opts ...Option) *Feat
 	return feature
 }
 
+// Visit visits all the features.
+func (r *Registry) Visit(f func(*Feature)) {
+	for _, feature := range r.features {
+		f(feature)
+	}
+}
+
 // SetEnabled set feature enabled.
 func (r *Registry) SetEnabled(name string, enabled bool) error {
 	f, ok := r.features[name]
 	if !ok {
-		return fmt.Errorf("not found feature name: %s", name)
+		return fmt.Errorf("not found feature: %s", name)
 	}
 	f.enabled.Store(enabled)
 	return nil
 }
 
-// Set parses the feature flags: foo=true,bar=false.
-func (r *Registry) Set(featureFlags string) error {
-	fs := strings.Split(featureFlags, ",")
+// Set sets the feature arguments.
+// eg: foo=true,bar=false
+func (r *Registry) Set(args string) error {
+	fs := strings.Split(args, ",")
 	for _, s := range fs {
 		feature := strings.Split(s, "=")
 		name := feature[0]
@@ -109,11 +115,4 @@ func (r *Registry) String() string {
 	}
 	return strings.Join(pairs, ",")
 
-}
-
-// Visit visits all the features.
-func (r *Registry) Visit(f func(*Feature)) {
-	for _, feature := range r.features {
-		f(feature)
-	}
 }
