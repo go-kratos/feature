@@ -1,7 +1,4 @@
 ### Feature Gates
-This page contains an overview of the various feature gates an administrator can specify on different components.
-
-### Overview
 Feature gates are a set of key=value pairs that describe features. You can turn these features on or off using the --feature-gates=foo=true,bar=false command line flag on each component.
 
 ### Usage
@@ -16,3 +13,5 @@ if foo.Enabled() {
     // TODO Feature
 }
 ```
+### References
+- [Kubernetes Feature Gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/)
